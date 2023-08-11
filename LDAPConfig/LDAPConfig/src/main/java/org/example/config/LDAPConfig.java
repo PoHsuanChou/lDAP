@@ -49,7 +49,7 @@ public class LDAPConfig {
     }
 
     public LDAPConfig ldapHost(String ldapHost){
-        this.ldapHost = ldapHost;;
+        this.ldapHost = ldapHost;
         return this;
     }
 
@@ -201,6 +201,8 @@ public class LDAPConfig {
     public static class DNInfo extends SubInfo{
 
         private List<AttrInfo> attrInfoList;
+
+        private Comparator<AttrInfo> comparator;
         private String dn;
 
         protected DNInfo(LDAPConfig ldapConfig) {
@@ -213,6 +215,11 @@ public class LDAPConfig {
                 throw new RuntimeException("attr and dn can only choose one");
             }
             this.dn = dn;
+            return this;
+        }
+
+        public DNInfo comparator(Comparator<AttrInfo> comparator) {
+            this.comparator = comparator;
             return this;
         }
 
